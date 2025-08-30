@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Movie tickets</title>
+        <style>
+            body{
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color:black;
+                color:white;
+                padding:20px;
+            }
+            header{
+                text-align:center;
+                color:rgb(165, 0, 88);
+                font-size:30px;
+            }
+            .gallery{
+                display:flex;
+                gap:20px;
+                justify-content:center;
+                flex-wrap:wrap;
+            }
+            .ticket{
+                background-color: black;
+                border-radius:10px;
+                width:200px;
+                padding:10px;
+                text-align:center;
+                transition:transform 0.3s;
+            }
+            .ticket:hover{
+                transform:scale (1.05);
+                box-shadow:0 0 15px rgb(190, 0, 95)
+            }
+            .ticket img{
+                width:100%;
+                border-radius:8px;
+            }
+            h1{
+                text-align:center;
+                color:crimson;
+                font-size:20px;
+            }
+            .modal{
+                display:none;
+                position:fixed;
+                z-index:1000;
+                left:0;
+                top:0;
+                width:100%;
+                height:100%;
+                background:rgba(0,0,0,0.8);
+            }
+            .modalcontent{
+                background:white;
+                color:black;
+                margin:10% auto;
+                padding:20px;
+                border-radius:10px;
+                width:80%;
+                max-width:600px;
+                text-align:center;
+                position:relative;
+            }
+            .modalcontent iframe{
+                width:100%;
+                height:300px;
+                border:none;
+            }
+            .close{
+                position:absolute;
+                top:10px;
+                right:20px;
+                font-size:28px;
+                color:black;
+                cursor:pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <header>Movie Tickets Gallery </header>
+        <h1>Purchasable Tickets</h1>
+        <div class="gallery">
+        <div class="ticket" onclick="openmodal('Snow white','https://www.youtube.com/embed/iV46TJKL8cU?si=aJnHkdoOrIg3IwIP')">
+            <img src="https://m.media-amazon.com/images/M/MV5BY2UwOGUxMzEtMzEyZi00NjEwLTkxOTMtYTljOWEzYjYyMWNjXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg">
+            <h3>Snow White</h3>
+            <p>$10</p>
+        </div>
+        <div class="ticket" onclick="openmodal('How to Train Your Dragon','https://www.youtube.com/embed/22w7z_lT6YM?si=2lb0tmkl8lNbMeKr')">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRMLTI3lCboHQbD7SnI-xv-15lYa7OvqQwOw&s">
+            <h3>How To Train Your Dragon</h3>
+            <p>$14</p>
+        </div>
+         <div class="ticket" onclick="openmodal('Lilo and Stitch','https://www.youtube.com/embed/VWqJifMMgZE?si=8g2wl7TfBprQLoqA')">
+            <img src="https://upload.wikimedia.org/wikipedia/en/5/56/Lilo_%26_Stitch_2025_Theatrical_Poster.jpg">
+            <h3>Lilo and Stitch</h3>
+            <p>$11</p>
+        </div>
+        <div class="ticket" onclick="openmodal('The Minecraft Movie','https://www.youtube.com/embed/wJO_vIDZn-I?si=e5sVReMZjOQFkGOT')">
+            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/66/A_Minecraft_Movie_poster.jpg/250px-A_Minecraft_Movie_poster.jpg">
+            <h3>Minecraft Movie</h3>
+            <p>$9</p>
+        </div>
+        <div class="ticket" onclick="openmodal('Superman','https://www.youtube.com/embed/Ox8ZLF6cGM0?si=pymEKcNCClir0ozP')">
+            <img src="https://m.media-amazon.com/images/M/MV5BOGMwZGJiM2EtMzEwZC00YTYzLWIxNzYtMmJmZWNlZjgxZTMwXkEyXkFqcGc@._V1_.jpg">
+            <h3>Superman</h3>
+            <p>$16</p>
+        </div>
+        <div class="ticket" onclick="openmodal('Jurassic World: Rebirth','https://www.youtube.com/embed/jan5CFWs9ic?si=kUUDZn-3bQ3Joia8')">
+            <img src="https://m.media-amazon.com/images/M/MV5BMDE1N2EzMjAtMDY1My00YWE5LWEyYjYtYmE3YjZjNzQwNDhmXkEyXkFqcGc@._V1_.jpg">
+            <h3>Jurassic World:Rebirth</h3>
+            <p>$19</p>
+        </div>
+         <div class="ticket" onclick="openmodal('The Fantastic Four:First Steps','https://www.youtube.com/embed/_rRoD28-WgU?si=31DYaJIbRnocLy5J')">
+            <img src="https://m.media-amazon.com/images/M/MV5BOGM5MzA3MDAtYmEwMi00ZDNiLTg4MDgtMTZjOTc0ZGMyNTIwXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg">
+            <h3>The Fantastic Four:First Steps</h3>
+            <p>$11</p>
+        </div>
+        <div class="ticket" onclick="openmodal('F1 The Movie','https://www.youtube.com/embed/69ffwl-8pCU?si=dGt9QOHJ7JGFoi6l')">
+            <img src="https://m.media-amazon.com/images/M/MV5BZTYwYjJhNzYtY2ZiZS00ZmYxLWJkZjctYjRlNGIxYjI3ZTU0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg">
+            <h3>F1 The Movie</h3>
+            <p>$11</p>
+        </div>
+        <div class="ticket" onclick="openmodal('Zombies 4:Dawn of the Vampires','https://www.youtube.com/embed/gi6L4pg9j84?si=NP8f6ISMMAVe2Ulz')">
+            <img src="https://m.media-amazon.com/images/M/MV5BNzk2MGYzZTgtZDI2OS00ZWYxLWI3NGItNTRiMTI3NGRmYjMzXkEyXkFqcGc@._V1_.jpg">
+            <h3>Zombies 4:Dawn of the Vampires</h3>
+            <p>$15</p>
+        </div>
+        <div class="ticket" onclick="openmodal('K-pop Demon Hunters','https://www.youtube.com/embed/3JTVQTk36R8?si=-4daKwEP_FL831he')">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbZ8Q-Hah_-zcPJv71ZCdlzu7GIEak5FoRCg&s">
+            <h3>K-pop Demon Hunters</h3>
+            <p>$10</p>
+        </div>
+        </div>
+        <div id="moviemodal" class="modal">
+            <div class="modalcontent">
+                <span class="close" onclick="closemodal()">&times;</span>
+                <h2 id="modaltitle"></h2>
+                <iframe id="modaltrailer" src="" allowfullscreen></iframe>
+            </div>
+        </div>
+        <script>
+            // function with parameter
+            function openmodal(title,trailer){
+                document.getElementById("modaltitle").innerText=title;
+                document.getElementById("modaltrailer").src=trailer;
+                document.getElementById("moviemodal").style.display="block";
+            }
+            // #function without parameter
+            function closemodal(){
+                document.getElementById("moviemodal").style.display="none";
+                document.getElementById("modaltrailer").src='';
+            }
+        </script>
+    </body>
+</html>
